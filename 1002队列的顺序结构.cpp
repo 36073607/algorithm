@@ -10,19 +10,19 @@ typedef struct Queue
 	int rear;
 }Queue;
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-³õÊ¼»¯
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-åˆå§‹åŒ–
 void initQueue(Queue* Q)
 {
 	Q->front = 0;
 	Q->rear = 0;
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-ÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿Õ
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 int isQ_Empty(Queue* Q)
 {
-	if (Q->front == Q->rear)//¶ÓÁÐ½øÐÐ¶à´Î½ø³ö¶ÓÁÐ²Ù×÷ºó£¬Èô¶ÓÍ·Óë¶ÓÎ²ÏàµÈ£¬Ôò¶ÓÁÐÎª¿Õ
+	if (Q->front == Q->rear)//é˜Ÿåˆ—è¿›è¡Œå¤šæ¬¡è¿›å‡ºé˜Ÿåˆ—æ“ä½œåŽï¼Œè‹¥é˜Ÿå¤´ä¸Žé˜Ÿå°¾ç›¸ç­‰ï¼Œåˆ™é˜Ÿåˆ—ä¸ºç©º
 	{
-		printf("¿Õ\n");
+		printf("ç©º\n");
 		return 1;
 	}
 	else
@@ -32,29 +32,29 @@ int isQ_Empty(Queue* Q)
 
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-³ö¶Ó
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å‡ºé˜Ÿ
 ElemType dequeue(Queue* Q)
 {
 	if (Q->front == Q->rear)
 	{
-		printf("¿Õ\n");
+		printf("ç©º\n");
 		return 0;
 	}
 
 	ElemType e = Q->data[Q->front];
-	Q->front++;//¶ÓÍ·µÄÏÂ±êÔö¼Ó£¬¸øËû¸²¸Çµô
+	Q->front++;//é˜Ÿå¤´çš„ä¸‹æ ‡å¢žåŠ ï¼Œç»™ä»–è¦†ç›–æŽ‰
 	return e;
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-µ÷Õû¶ÓÁÐ(Ò»Ð©Êý¾ÝÒÑ¾­³ö¶Ó£¬ÐèÒª½«¶ÓÁÐÖÐÆäËûÊý¾ÝÍùÇ°ÒÆ£¬Ê¹¶ÓÍ·µÄÏÂ±ê´Ó0¿ªÊ¼)
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-è°ƒæ•´é˜Ÿåˆ—(ä¸€äº›æ•°æ®å·²ç»å‡ºé˜Ÿï¼Œéœ€è¦å°†é˜Ÿåˆ—ä¸­å…¶ä»–æ•°æ®å¾€å‰ç§»ï¼Œä½¿é˜Ÿå¤´çš„ä¸‹æ ‡ä»Ž0å¼€å§‹)
 int queueFull(Queue* Q)
 {
-	if (Q->front > 0)//ÎÒÕæµÄÂúÁËÃ´£¿
+	if (Q->front > 0)//æˆ‘çœŸçš„æ»¡äº†ä¹ˆï¼Ÿ
 	{
-		int difference = Q->front;//²îÖµ£¬Ê£ÏÂµÄÔªËØÐèÒªÒ»´ÎÅ²ÕâÃ´¶à²½³¤
+		int difference = Q->front;//å·®å€¼ï¼Œå‰©ä¸‹çš„å…ƒç´ éœ€è¦ä¸€æ¬¡æŒªè¿™ä¹ˆå¤šæ­¥é•¿
 		for (int i = Q->front; i <= Q->rear; i++)
 		{
-			Q->data[i - difference] = Q->data[i];//ºËÐÄ
+			Q->data[i - difference] = Q->data[i];//æ ¸å¿ƒ
 		}
 		Q->front = 0;
 		Q->rear = Q->rear - difference;
@@ -62,19 +62,19 @@ int queueFull(Queue* Q)
 	}
 	else
 	{
-		printf("ÕæµÄÂúÁË\n");
+		printf("çœŸçš„æ»¡äº†\n");
 		return 0;
 	}
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-Èë¶Ó
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å…¥é˜Ÿ
 void equeue(Queue* Q, ElemType e)
 {
 	if (Q->rear >= MAXSIZE)
 	{
 		if (!queueFull(Q))
 		{
-			printf("ÂúÁË\n");
+			printf("æ»¡äº†\n");
 			return;
 		}
 	}
@@ -82,12 +82,12 @@ void equeue(Queue* Q, ElemType e)
 	Q->rear++;
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-»ñÈ¡¶ÓÍ·Êý¾Ý
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-èŽ·å–é˜Ÿå¤´æ•°æ®
 int getHead(Queue* Q, ElemType* e)
 {
 	if (Q->front == Q->rear)
 	{
-		printf("ÂúÁË\n");
+		printf("ç©ºçš„\n");
 		return 0;
 	}
 	*e = Q->data[Q->front];
@@ -112,4 +112,5 @@ int main()
 	printf("%d\n", e);
 
 	return 0;
+
 }
