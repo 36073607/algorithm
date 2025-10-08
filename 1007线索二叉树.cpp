@@ -110,7 +110,7 @@ void threading(ThreadTree T)
 //注：函数的先后顺序并不影响，有需要时声明即可；主要是在主函数内的顺序决定哪个函数先被执行
 //所以，prev最开始就是指向头结点head
 
-void inOrder(ThreadTree T)
+void inOrder(ThreadTree T)//中序
 {
 	ThreadTree curr = T->lchild;//curr指向根结点
 	while (curr != T)//curr不指向头结点
@@ -143,3 +143,4 @@ int main()
 
 	return 0;
 }
+
