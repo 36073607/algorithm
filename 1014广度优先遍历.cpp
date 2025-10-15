@@ -31,7 +31,7 @@ void creat_grph(Mat_Grph* G)
 
 	for (int i = 0; i < G->vertex_num; i++)
 	{
-		for (int j = 0; j < G->edge_num; j++)
+		for (int j = 0; j < G->vertex_num; j++)
 		{
 			G->arc[i][j] = 0;
 		}
@@ -77,23 +77,23 @@ void creat_grph(Mat_Grph* G)
 	}
 }
 
-void bfs(Mat_Grph* G, int i = 0)//´«ÈëÍ¼GºÍ¶¥µãaµÄÏÂ±ê
+void bfs(Mat_Grph* G, int i = 0)//ä¼ å…¥å›¾Gå’Œé¡¶ç‚¹açš„ä¸‹æ ‡
 {
 	int queue[MAXSIZE];
 	int front = 0;
 	int rear = 0;
 
-	queue[rear] = i;//µÚÒ»¸ö¶¥µãÈë¶Ó
+	queue[rear] = i;//ç¬¬ä¸€ä¸ªé¡¶ç‚¹å…¥é˜Ÿ
 	rear++;
 	visited[i] = 1;
 	printf("%c", G->vertex[i]);
 
 	while (rear != front)
 	{
-		i = queue[front];//³ö¶Ó
+		i = queue[front];//å‡ºé˜Ÿ
 		front++;
 
-		for (int j = 0; j < G->vertex_num; j++)//±éÀúËùÓĞ¿ÉÄÜµÄÏàÁÚ½Úµã
+		for (int j = 0; j < G->vertex_num; j++)//éå†æ‰€æœ‰å¯èƒ½çš„ç›¸é‚»èŠ‚ç‚¹
 		{
 			if (G->arc[i][j] == 1 && visited[j] == 0)
 			{
@@ -119,4 +119,5 @@ int main()
 	bfs(&G, 0);
 
 	return 0;
+
 }
