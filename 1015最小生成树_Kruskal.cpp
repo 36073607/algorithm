@@ -2,7 +2,8 @@
 #include <iostream>
 using namespace std;
 #define MAXSIZE 100
-#define MAX 0x7fffffff //intÀàĞÍ×î´óÖµ±íÊ¾ÎŞÇî
+#define MAXEDGE 200
+#define MAX 0x7fffffff //intç±»å‹æœ€å¤§å€¼è¡¨ç¤ºæ— ç©·
 typedef char VertexType;
 typedef int EdgeType;
 
@@ -44,16 +45,16 @@ void creatGrph(Mat_Grph* G)
 		{
 			if (i == j)
 			{
-				G->arc[i][j] = 0;//¶Ô½ÇÏßÉÏµÄÈ¨ÖµÎª0£¬±Ï¾¹×Ô¼º¸ú×Ô¼º¶¼ĞÎ³É²»ÁËÒ»Ìõ±ß
+				G->arc[i][j] = 0;//å¯¹è§’çº¿ä¸Šçš„æƒå€¼ä¸º0ï¼Œæ¯•ç«Ÿè‡ªå·±è·Ÿè‡ªå·±éƒ½å½¢æˆä¸äº†ä¸€æ¡è¾¹
 			}
 			else
 			{
-				G->arc[i][j] = MAX;//ÆäÓàµÄ±ßÏÈ¸³³ÉÎŞÏŞ
+				G->arc[i][j] = MAX;//å…¶ä½™çš„è¾¹å…ˆèµ‹æˆæ— é™
 			}
 		}
 	}
 
-	//¸øÃ¿Ìõ±ß¸³È¨ÖØÖµ
+	//ç»™æ¯æ¡è¾¹èµ‹æƒé‡å€¼
 	//A-B A-F
 	G->arc[0][1] = 10;
 	G->arc[0][5] = 11;
@@ -113,7 +114,7 @@ void my_BubbleSort(Edge* t,int sz)
 
 int find(int* parent, int index)
 {
-	while (parent[index] > 0)//ÕâÀïparentÊı×éÖĞÓĞÖµÊ±£¬¾ÍÈÃÍ¬Ò»Ìõ±ßÁíÒ»¸ö¶¥µã¡°´úÌæÒ»ÏÂ¡±£¬ÀàËÆÓÚÂß¼­ÉÏµÄ³É»·£¬ĞÎ³ÉÒ»¸öÕûÌå
+	while (parent[index] > 0)//è¿™é‡Œparentæ•°ç»„ä¸­æœ‰å€¼æ—¶ï¼Œå°±è®©åŒä¸€æ¡è¾¹å¦ä¸€ä¸ªé¡¶ç‚¹â€œä»£æ›¿ä¸€ä¸‹â€ï¼Œç±»ä¼¼äºé€»è¾‘ä¸Šçš„æˆç¯ï¼Œå½¢æˆä¸€ä¸ªæ•´ä½“
 	{
 		index = parent[index];
 	}
@@ -122,10 +123,10 @@ int find(int* parent, int index)
 
 void Kruskal(Mat_Grph* G)
 {
-	Edge edges[MAXSIZE];//´æÈëÃ¿Ìõ±ßÍ·¡¢Î²¡¢È¨Öµ
-	int k = 0;//³äµ±Êı×éÏÂ±ê,×îÖÕkµÄÖµÎªÊı×é¾ßÌåÔªËØ
-	//¸ù¾İ´´½¨µÄÄÇÕÅÍ¼È¥´´½¨edgesÊı×é
-	for (int i = 0; i < G->vertex_num; i++)//j´Ói+1¿ªÊ¼£¬·ÀÖ¹È¡µ½¶Ô½ÇÏß
+	Edge edges[MAXEDGE];//å­˜å…¥æ¯æ¡è¾¹å¤´ã€å°¾ã€æƒå€¼EDGE
+	int k = 0;//å……å½“æ•°ç»„ä¸‹æ ‡,æœ€ç»ˆkçš„å€¼ä¸ºæ•°ç»„å…·ä½“å…ƒç´ 
+	//æ ¹æ®åˆ›å»ºçš„é‚£å¼ å›¾å»åˆ›å»ºedgesæ•°ç»„
+	for (int i = 0; i < G->vertex_num; i++)//jä»i+1å¼€å§‹ï¼Œé˜²æ­¢å–åˆ°å¯¹è§’çº¿
 	{
 		for (int j = i + 1; j < G->vertex_num; j++)
 		{
@@ -137,22 +138,22 @@ void Kruskal(Mat_Grph* G)
 		
 	}
 
-	my_BubbleSort(edges,k);//¶Ô±ß½øĞĞÅÅĞò
+	my_BubbleSort(edges,k);//å¯¹è¾¹è¿›è¡Œæ’åº
 
-	int parent[MAXSIZE];//ÀàËÆÓÚPrimËã·¨ÖĞµÄvex_index,Êı×éÖĞµÄÖµ±íÊ¾Ò»¸ö¶¥µã£¬Êı×éÏÂ±ê±íÊ¾ÓëÖ®ÏàÁ¬µÄÁíÒ»¸ö¶¥µã
+	int parent[MAXSIZE];//ç±»ä¼¼äºPrimç®—æ³•ä¸­çš„vex_index,æ•°ç»„ä¸­çš„å€¼è¡¨ç¤ºä¸€ä¸ªé¡¶ç‚¹ï¼Œæ•°ç»„ä¸‹æ ‡è¡¨ç¤ºä¸ä¹‹ç›¸è¿çš„å¦ä¸€ä¸ªé¡¶ç‚¹
 	for (int i = 0; i < G->vertex_num; i++)
 	{
 		parent[i] = 0;
 	}
 
-	int n, m;//ÓÃÓÚ±íÊ¾¶¥µã
-	for (int i = 0; i < G->edge_num; i++)//15Ìõ±ß£¬Ñ­»·15´Î
+	int n, m;//ç”¨äºè¡¨ç¤ºé¡¶ç‚¹
+	for (int i = 0; i < G->edge_num; i++)//15æ¡è¾¹ï¼Œå¾ªç¯15æ¬¡
 	{
 		n = find(parent, edges[i].begin);
 		m = find(parent, edges[i].end);
-		if (n != m)//ÎÒµÄÀí½âÊÇËüÔÚÁªÍ¨µÄÂ·Àïµ½´¦×ª£¬Èç¹ûĞÎ³É»ØÂ·ÁË¾Í»á×ª»ØÔ­µØ£¬n = m£»²»³É»·¼´n!=m¾ÍÊä³ö
+		if (n != m)//æˆ‘çš„ç†è§£æ˜¯å®ƒåœ¨è”é€šçš„è·¯é‡Œåˆ°å¤„è½¬ï¼Œå¦‚æœå½¢æˆå›è·¯äº†å°±ä¼šè½¬å›åŸåœ°ï¼Œn = mï¼›ä¸æˆç¯å³n!=må°±è¾“å‡º
 		{
-			parent[n] = m;//ÈÃĞÂµÄ½á¹û¼ÓÈëµ½parentÊı×éÖĞ
+			parent[n] = m;//è®©æ–°çš„ç»“æœåŠ å…¥åˆ°parentæ•°ç»„ä¸­
 			printf("(%c %c) %d\n", G->vertex[edges[i].begin], G->vertex[edges[i].end],edges[i].weight);
 		}
 
@@ -168,4 +169,5 @@ int main()
 	delete G;
 
 	return 0;
+
 }
