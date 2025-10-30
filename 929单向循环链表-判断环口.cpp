@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-//929µ¥ÏòÑ­»·Á´±í-ÅĞ¶Ï»·¿Ú
+//929å•å‘å¾ªç¯é“¾è¡¨-åˆ¤æ–­ç¯å£
 #include <iostream>
 using namespace std;
 typedef int ElemType;
@@ -8,7 +8,7 @@ typedef struct Node
 	ElemType data;
 	struct Node* next;
 }Node;
-//³õÊ¼»¯£¬´´½¨Í·½Úµã
+//åˆå§‹åŒ–ï¼Œåˆ›å»ºå¤´èŠ‚ç‚¹
 Node* initNode()
 {
 	Node* p = (Node*)malloc(sizeof(Node));
@@ -17,18 +17,18 @@ Node* initNode()
 
 	return p;
 }
-//Î²²å·¨
-// ²éÕÒ×îºóÒ»¸öÔªËØ
+//å°¾æ’æ³•
+// æŸ¥æ‰¾æœ€åä¸€ä¸ªå…ƒç´ 
 Node* findTail(Node* L)
 {
 	Node* p = L;
-	while (p->next != NULL)//×¢ÒâÒ»¶¨ÊÇp->next != NULL, ²»ÊÇp!=NULL£¨ÕâÑùĞ´×îÖÕ½á¹û·µ»ØµÄÊÇNULL£©
+	while (p->next != NULL)//æ³¨æ„ä¸€å®šæ˜¯p->next != NULL, ä¸æ˜¯p!=NULLï¼ˆè¿™æ ·å†™æœ€ç»ˆç»“æœè¿”å›çš„æ˜¯NULLï¼‰
 	{
 		p = p->next;
 	}
 	return p;
 }
-//Î²²å·¨²åÈë
+//å°¾æ’æ³•æ’å…¥
 Node* insertTail(Node* tail, ElemType e)
 {
 	Node* q = (Node*)malloc(sizeof(Node));
@@ -38,7 +38,7 @@ Node* insertTail(Node* tail, ElemType e)
 
 	return q;
 }
-//±éÀú
+//éå†
 void listNode(struct Node* L)
 {
 	Node* p = L->next;
@@ -49,12 +49,12 @@ void listNode(struct Node* L)
 	}
 
 }
-//ÅĞ¶Ï»·¿Ú
+//åˆ¤æ–­ç¯å£
 Node* findEntrance(Node* L)
 {
 	Node* fast = L;
 	Node* slow = L;
-	int count = 1;
+	int count = 1;//ç»Ÿè®¡ç¯ä¸€å…±æœ‰å¤šå°‘ä¸ªç»“ç‚¹
 	while (fast != NULL && fast->next != NULL)
 	{
 		fast = fast->next->next;
@@ -72,11 +72,11 @@ Node* findEntrance(Node* L)
 			fast = L;
 			slow = L;
 
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < count; i++)//è®©ä¸€ä¸ªæŒ‡é’ˆï¼ˆè¿™é‡Œä»¥å¿«æŒ‡é’ˆä¸ºä¾‹ï¼‰å…ˆèµ°countæ­¥
 			{
 				fast = fast->next;
 			}
-			while (fast != slow)
+			while (fast != slow)//åŒæ­¥èµ°
 			{
 				fast = fast->next;
 				slow = slow->next;
@@ -110,4 +110,5 @@ int main()
 	printf("%d\n", p->data);
 
 	return 0;
+
 }
