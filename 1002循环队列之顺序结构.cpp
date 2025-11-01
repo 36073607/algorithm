@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 using namespace std;
-//¶ÓÁÐµÄË³Ðò½á¹¹-Ñ­»·¶ÓÁÐ
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å¾ªçŽ¯é˜Ÿåˆ—
 #define MAXSIZE 100
 typedef int ElemType;
 typedef struct Queue
@@ -11,19 +11,19 @@ typedef struct Queue
 	int rear;
 }Queue;
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-³õÊ¼»¯
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-åˆå§‹åŒ–
 void initQueue(Queue* Q)
 {
 	Q->front = 0;
 	Q->rear = 0;
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-Ñ­»·¶ÓÁÐ-ÅÐ¶Ï¶ÓÁÐÊÇ·ñÎª¿Õ
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å¾ªçŽ¯é˜Ÿåˆ—-åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 int isQ_Empty(Queue* Q)
 {
-	if (Q->front == Q->rear)//¶ÓÁÐ½øÐÐ¶à´Î½ø³ö¶ÓÁÐ²Ù×÷ºó£¬Èô¶ÓÍ·Óë¶ÓÎ²ÏàµÈ£¬Ôò¶ÓÁÐÎª¿Õ
+	if (Q->front == Q->rear)//é˜Ÿåˆ—è¿›è¡Œå¤šæ¬¡è¿›å‡ºé˜Ÿåˆ—æ“ä½œåŽï¼Œè‹¥é˜Ÿå¤´ä¸Žé˜Ÿå°¾ç›¸ç­‰ï¼Œåˆ™é˜Ÿåˆ—ä¸ºç©º
 	{
-		printf("¿Õ\n");
+		printf("ç©º\n");
 		return 1;
 	}
 	else
@@ -33,25 +33,31 @@ int isQ_Empty(Queue* Q)
 
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-Ñ­»·¶ÓÁÐ-Èë¶Ó
+//æ–°å¢žï¼šå¾ªçŽ¯é˜Ÿåˆ—æ±‚é˜Ÿåˆ—é•¿åº¦
+int QueueLength(Queue* Q)
+{
+	return (Q->rear - Q->front + MAXSIZE) % MAXSIZE;
+}
+
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å¾ªçŽ¯é˜Ÿåˆ—-å…¥é˜Ÿ
 int equeue(Queue* Q, ElemType e)
 {
 	if ((Q->rear + 1) % MAXSIZE == Q->front)//eg:0 1 3 4 5 6, front=0,rear=6,MAXSIZE=7
 	{
-		printf("ÂúÁË\n");
+		printf("æ»¡äº†\n");
 		return 0;
 	}
 	Q->data[Q->rear] = e;
-	Q->rear = (Q->rear + 1) % MAXSIZE;//ÖØµã
+	Q->rear = (Q->rear + 1) % MAXSIZE;//é‡ç‚¹
 	return 1;
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-Ñ­»·¶ÓÁÐ-³ö¶Ó
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å¾ªçŽ¯é˜Ÿåˆ—-å‡ºé˜Ÿ
 int dequeue(Queue* Q, ElemType* e)
 {
 	if (Q->front == Q->rear)
 	{
-		printf("¿ÕµÄ\n");
+		printf("ç©ºçš„\n");
 		return 0;
 	}
 	*e = Q->data[Q->front];
@@ -59,12 +65,12 @@ int dequeue(Queue* Q, ElemType* e)
 	return 1;
 }
 
-//¶ÓÁÐµÄË³Ðò½á¹¹-Ñ­»·¶ÓÁÐ-»ñÈ¡¶ÓÍ·Êý¾Ý
+//é˜Ÿåˆ—çš„é¡ºåºç»“æž„-å¾ªçŽ¯é˜Ÿåˆ—-èŽ·å–é˜Ÿå¤´æ•°æ®
 int getHead(Queue* Q, ElemType* e)
 {
 	if (Q->front == Q->rear)
 	{
-		printf("¿ÕµÄ\n");
+		printf("ç©ºçš„\n");
 		return 0;
 	}
 	*e = Q->data[Q->front];
@@ -92,4 +98,5 @@ int main()
 	printf("%d\n", e);
 
 	return 0;
+
 }
