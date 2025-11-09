@@ -136,46 +136,58 @@ int main()
 }
 
 //2.高精度数乘高精度数
+#include <iostream>
+#include <string>
+using namespace std;
+int a[2025] = { 0 };
+int b[2025] = { 0 };
+int c[5050] = { 0 };
 int main()
 {
-	string s1, s2;
-	getline(cin, s1);
-	getline(cin, s2);
-	int a[250] = { 0 };
-	int b[250] = { 0 };
-	int c[500] = { 0 };
+    string s1, s2;
+    getline(cin, s1);
+    getline(cin, s2);
 
-	for (int i = 0; i < s1.size(); i++)
-		a[s1.size() - i - 1] = s1[i] - '0';
-	for (int i = 0; i < s2.size(); i++)
-		b[s2.size() - i - 1] = s2[i] - '0';
+    // 将字符串转换为数字数组（逆序存储）
+    for (int i = 0; i < s1.size(); i++)
+        a[s1.size() - i - 1] = s1[i] - '0';
+    for (int i = 0; i < s2.size(); i++)
+        b[s2.size() - i - 1] = s2[i] - '0';
 
-	for (int i = 0; i < s1.size(); i++)
-	{
-		for (int j = 0; j < s2.size(); j++)
-		{
-			c[j + i] += b[j] * a[i];//错位相加
-			if (c[j + i] >= 10)
-			{
-				c[j + i + 1] += c[j + i] / 10;
-				c[j + i] %= 10;
-			}
-		}
-	}
+    // 高精度乘法
+    for (int i = 0; i < s1.size(); i++)
+    {
+        for (int j = 0; j < s2.size(); j++) 
+        {
+            c[j + i] += b[j] * a[i];
+        }
+    }
 
-	int index = 0;
-	for (int i = s1.size() + s2.size() - 1; i >= 0; i--)
-	{
-		if (c[i] != 0)
-		{
-			index = i;
-			break;
-		}
-	}
-	for (int i = index; i >= 0; i--)
-		cout << c[i];
+    // 统一处理进位
+    for (int i = 0; i < s1.size() + s2.size(); i++)  // 最大可能位数
+    {
+        if (c[i] >= 10)
+        {
+            c[i + 1] += c[i] / 10;  // 进位到高位
+            c[i] %= 10;             // 保留个位
+        }
+    }
 
-	return 0;
+    // 寻找最高非零位
+    int index = 0;
+    for (int i = s1.size() + s2.size() - 1; i >= 0; i--)
+    {
+        if (c[i] != 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    for (int i = index; i >= 0; i--)
+        cout << c[i];
+
+    return 0;
 }
 
 
@@ -371,3 +383,4 @@ int main()
 	return 0;
 
 }
+
