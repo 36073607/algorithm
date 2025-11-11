@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 using namespace std;
-//Ò» ËÑË÷
+//ä¸€ æœç´¢
 int search(int* arr, int sz, int key)
 {
 	for (int i = 0; i < sz; i++)
@@ -29,8 +29,8 @@ int main()
 }
 
 
-//¶ş ²åÈë
-//·¨Ò»£º×ªÒÆ
+//äºŒ æ’å…¥
+//æ³•ä¸€ï¼šè½¬ç§»
 #define MAX 6
 int main()
 {
@@ -52,7 +52,7 @@ int main()
 
 	return 0;
 }
-//·¨¶ş£º¸´ÖÆ
+//æ³•äºŒï¼šå¤åˆ¶
 int main()
 {
 	int a[4] = { 1,3,4,5 };
@@ -73,8 +73,8 @@ int main()
 }
 
 
-//Èı É¾³ı
-//·¨Ò»£º×ªÒÆ
+//ä¸‰ åˆ é™¤
+//æ³•ä¸€ï¼šè½¬ç§»
 int main()
 {
 	int arr[5] = { 1,2,3,4,5 };
@@ -87,7 +87,7 @@ int main()
 
 	return 0;
 }
-//·¨¶ş£º¸´ÖÆ
+//æ³•äºŒï¼šå¤åˆ¶
 int main()
 {
 	int a[5] = { 1,2,3,4,5 };
@@ -107,8 +107,8 @@ int main()
 }
 
 
-//ËÄ ÅÅĞò
-//Ã°ÅİÅÅĞò
+//å›› æ’åº
+//å†’æ³¡æ’åº
 int main()
 {
 	int arr[10] = { 1,3,4,2,5,6,9,7,8,0 };
@@ -117,7 +117,7 @@ int main()
 	{
 		for (int j = 0; j < sz - 1 - i; j++)
 		{
-			if (arr[j] > arr[j + 1])//´ÓĞ¡µ½´óÅÅĞò
+			if (arr[j] > arr[j + 1])//ä»å°åˆ°å¤§æ’åº
 			{
 				int temp = arr[j];
 				arr[j] = arr[j + 1];
@@ -135,7 +135,7 @@ int main()
 	return 0;
 }
 
-//²åÈëÅÅĞò
+//æ’å…¥æ’åº
 int main()
 {
 	int arr[10] = { 1,3,4,2,5,6,9,7,8,0 };
@@ -144,13 +144,13 @@ int main()
 	for (i = 1; i < sz; i++)
 	{
 		temp = arr[i];
-		j = i - 1;//ÓëËûÇ°Ò»¸öÊı±È½Ï
+		j = i - 1;//ä¸ä»–å‰ä¸€ä¸ªæ•°æ¯”è¾ƒ
 		while (j >= 0 && arr[j] > temp)
 		{
 			arr[j + 1] = arr[j];
 			j--;
 		}
-		arr[j + 1] = temp;//Ö®ËùÒÔÒª¼Ó1ÊÇÒòÎªwhileÔÚÍË³öÇ°ÓÖÖ´ĞĞÁËÒ»´Îj--£¬×¢ÒâÕâÌõÓï¾äÒª·ÅÔÚÑ­»·ÄÚ²¿
+		arr[j + 1] = temp;//ä¹‹æ‰€ä»¥è¦åŠ 1æ˜¯å› ä¸ºwhileåœ¨é€€å‡ºå‰åˆæ‰§è¡Œäº†ä¸€æ¬¡j--ï¼Œæ³¨æ„è¿™æ¡è¯­å¥è¦æ”¾åœ¨å¾ªç¯å†…éƒ¨
 	}
 	
 	for (i = 0; i < 10; i++)
@@ -161,21 +161,21 @@ int main()
 	return 0;
 }
 
-//Ñ¡ÔñÅÅĞò
+//é€‰æ‹©æ’åº
 int main()
 {
 	int arr[10] = { 1,3,4,2,5,6,9,7,8,0 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	int index = 0;
-	for (int i = 0; i < sz - 1; i++)//ÓëÃ°ÅİÅÅĞòÒ»ÖÂ£¬¹²½øĞĞn-1ÂÖ
+	for (int i = 0; i < sz - 1; i++)//ä¸å†’æ³¡æ’åºä¸€è‡´ï¼Œå…±è¿›è¡Œn-1è½®
 	{
 		index = i;
-		for (int j = i + 1; j < sz; j++)//Ç°ÃæµÄÊı¾İÅÅºÃÁË£¬Ïòºó½øĞĞ£¬´Ói+1µ½sz-1
+		for (int j = i + 1; j < sz; j++)//å‰é¢çš„æ•°æ®æ’å¥½äº†ï¼Œå‘åè¿›è¡Œï¼Œä»i+1åˆ°sz-1
 		{
 			if (arr[j] < arr[index])
-				index = j;//indexÎª×îĞ¡Êı¾İµÄÏÂ±ê
+				index = j;//indexä¸ºæœ€å°æ•°æ®çš„ä¸‹æ ‡
 		}
-		if (index != i)//ÏÂ±í²»Ì«»»Î»ÖÃ£¬Ê¹Êı×é´Ó×óÖÁÓÒÅÅÁĞµÄÊı¾İÒÀ´ÎµİÔö
+		if (index != i)//ä¸‹è¡¨ä¸å¤ªæ¢ä½ç½®ï¼Œä½¿æ•°ç»„ä»å·¦è‡³å³æ’åˆ—çš„æ•°æ®ä¾æ¬¡é€’å¢
 		{
 			int temp = arr[i];
 			arr[i] = arr[index];
@@ -191,7 +191,7 @@ int main()
 	return 0;
 }
 
-//¿ìËÙÅÅĞò
+//å¿«é€Ÿæ’åº
 void quick_sort(int* arr, int left, int right)
 {
 	if (left >= right)
@@ -232,4 +232,18 @@ int main()
 	}
 
 	return 0;
+
+}
+
+
+//å°†æ•°ç»„å…¶ä½™ä½ç½®å‘¨æœŸèµ‹å€¼
+for (int i = 0; i < na; i++)
+    cin >> a[i];
+for (int i = 1; i * na < n; i++)
+{
+    for (int j = 0; j < na; j++)
+    {
+        if (i * na + j < n)
+            a[i * na + j] = a[j];
+    }
 }
