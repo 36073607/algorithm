@@ -384,3 +384,29 @@ int main()
 
 }
 
+
+//补充：
+int arr[350234];
+int digit = 1;//记录当前数据位数
+int n, a;
+cin >> n >> a;
+for (int i = 0; i < 350234; i++)
+	arr[i] = 0;
+arr[0] = 1;
+
+for (int j = 2; j <= n; j++)
+{
+	int carry = 0;//进位变量
+	for (int k = 0; k < digit; k++)
+	{
+		int tmp = arr[k] * j + carry;
+		arr[k] = tmp % 10;
+		carry = tmp / 10;
+	}
+	//处理剩余进位
+	while (carry)
+	{
+		arr[digit] = carry % 10;
+		carry /= 10;
+		digit++;
+	}
