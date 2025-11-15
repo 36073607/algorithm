@@ -227,3 +227,28 @@ int lower_bound(const int a[], int b, int e, const int t)
     }
   return high;
 }
+
+//另一版：（以下界定位为例，上界定位同理）
+int lower_bound(const int a[], int b, int e, const int t) 
+{
+    int low = b;
+    int high = e - 1;  // 需要改为 e-1 防止越界
+    int result = e;    // 默认返回 e
+    
+    while(low <= high) //这里是小于等于
+	{
+        int mid = low + (high - low) / 2;
+        
+        if(a[mid] < t) 
+		{
+            low = mid + 1;
+        } 
+		else 
+		{
+            result = mid;  // 记录可能的结果
+            high = mid - 1;
+        }
+    }
+    
+    return result;
+}
